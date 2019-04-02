@@ -11,6 +11,8 @@ The application uses
 
 There are also git hooks to help developers remember to run the tests pre-commit  
 
+The app also uses docker and docker-compose for containerized deployment  
+
 ### To Install Dependencies  
 ##### (You Should Do This Before Anything Else)
 `make install`  
@@ -23,6 +25,9 @@ There are also git hooks to help developers remember to run the tests pre-commit
 
 ### To Start The App Locally In Prod Mode  
 `make run-prod`  
+
+### To Start The App Locally In Dev Mode (With Docker)  
+`make run-docker-dev`  
 
 ### To Start The App Locally In Prod Mode (With Docker)  
 `make run-docker-prod`  
