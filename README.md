@@ -6,7 +6,7 @@ The application uses
 [pytest](https://docs.pytest.org/en/latest/) for testing  
 [pylint](https://www.pylint.org/) for linting  
 [black](https://black.readthedocs.io/en/stable/) for formatting  
-[flask](http://flask.pocoo.org/) for its web ui.
+[flask](http://flask.pocoo.org/) for its web ui.  
 [circleci](https://circleci.com/) for ci cd  
 
 There are also git hooks to help developers remember to run the tests pre-commit  
