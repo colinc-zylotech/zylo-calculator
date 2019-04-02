@@ -1,4 +1,5 @@
-.PHONY: test
+.PHONY: all install install-prod test lint format run-dev \
+	run-prod run-docker-dev run-docker-prod
 
 all: install test run-dev
 
