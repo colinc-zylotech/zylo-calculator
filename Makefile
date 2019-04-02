@@ -3,6 +3,7 @@
 all: install test run-dev
 
 install:
+	cp .githooks/* .git/hooks
 	pip install pipenv
 	pipenv install --dev
 
