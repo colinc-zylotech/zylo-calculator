@@ -1,17 +1,26 @@
 {% extends "base.html" %}
 
-{% block header %}
-<h2>Zylo Calculator</h2>
-{% endblock %}
-
 {% block content %}
-<form action="/add" method="POST">
-    <label for="number-to-add">Value</label>
-    <input id="number-to-add" type="number" name="number_to_add" required/>
-    <input type="submit" value="Add"/>
-</form>
-<form action="/clear" method="POST">
-    <input type="submit" value="Clear">
-</form>
-<div>Current Total: {{ calculator_total }}</div>
+<div class="calculator-page-container">
+    <div class="calculator">
+        <div class="calculator__title">
+            <h2><span class="zylo">Zylo</span> Calculator</h2>
+        </div>
+        {% for message in get_flashed_messages() %}
+          <div class="flash">{{ message }}</div>
+        {% endfor %}
+        <form method="POST">
+            <label for="number-to-add" value="number to add"/>
+            <input class="calculator__number-input" type="number" name="number_to_add" step="0.01" required/>
+            <input type="submit" value="Add (+)" formaction="/add"/>
+        </form>
+        <form action="/clear" method="POST">
+            <input type="submit" value="Clear">
+        </form>
+        <div class="calculator__total-display">
+            <span class="calculator__total-display-title">Current Total:</span>
+            <span class="calculator__total-display-value">{{ calculator_total }}</span>
+        </div>
+    </div>
+</div>
 {% endblock %}
