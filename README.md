@@ -1,4 +1,5 @@
 # Zylo Calculator  
+[![CircleCI](https://circleci.com/gh/ColinCrawford/gitflow-sample-app.svg?style=svg)](https://circleci.com/gh/ColinCrawford/gitflow-sample-app)  
 A demo application used when presenting on using git flow for development   
   
 The application uses  
