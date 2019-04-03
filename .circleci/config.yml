@@ -39,35 +39,35 @@ jobs:
           path: test-reports
           destination: test-reports
 
-deploy-prod:
-    docker:
-      - image: buildpack-deps:trusty
-    steps:
-      - checkout
-      - run:
-          name: Deploy Master to Heroku
-          command: |
-            git push https://heroku:$HEROKU_API_KEY@git.heroku.com/zylo-calculator.git master
-
-deploy-release:
-    docker:
-      - image: buildpack-deps:trusty
-    steps:
-      - checkout
-      - run:
-          name: Deploy Release to Heroku
-          command: |
-            git push https://heroku:$HEROKU_API_KEY@git.heroku.com/zylo-calculator-release.git master
-
-deploy-dev:
-    docker:
-      - image: buildpack-deps:trusty
-    steps:
-      - checkout
-      - run:
-          name: Deploy Dev to Heroku
-          command: |
-            git push https://heroku:$HEROKU_API_KEY@git.heroku.com/zylo-calculator-dev.git master
+  deploy-prod:
+      docker:
+        - image: buildpack-deps:trusty
+      steps:
+        - checkout
+        - run:
+            name: Deploy Master to Heroku
+            command: |
+              git push --force https://heroku:$HEROKU_API_KEY@git.heroku.com/zylo-calculator.git master
+  
+  deploy-release:
+      docker:
+        - image: buildpack-deps:trusty
+      steps:
+        - checkout
+        - run:
+            name: Deploy Release to Heroku
+            command: |
+              git push --force https://heroku:$HEROKU_API_KEY@git.heroku.com/zylo-calculator-release.git master
+  
+  deploy-dev:
+      docker:
+        - image: buildpack-deps:trusty
+      steps:
+        - checkout
+        - run:
+            name: Deploy Dev to Heroku
+            command: |
+              git push --force https://heroku:$HEROKU_API_KEY@git.heroku.com/zylo-calculator-dev.git master
 
 workflows:
   version: 2
@@ -85,10 +85,10 @@ workflows:
             - build
           filters:
             branches:
-              only: /release-*/
+              only: /release.*/
       - deploy-dev:
           requires:
             - build
           filters:
             branches:
-              only: development
+              only: develop
