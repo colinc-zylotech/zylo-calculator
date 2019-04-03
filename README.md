@@ -1,5 +1,10 @@
 # Zylo Calculator  
-A demo application used when presenting on using git flow for development   
+[![CircleCI](https://circleci.com/gh/ColinCrawford/gitflow-sample-app.svg?style=svg)](https://circleci.com/gh/ColinCrawford/gitflow-sample-app)  
+A demo application used when presenting git flow  
+
+[dev-deployment](https://zylo-calculator-dev.herokuapp.com/)  
+[release-deployment](https://zylo-calculator-release.herokuapp.com/)  
+[prod-deployment](https://zylo-calculator.herokuapp.com/)  
   
 The application uses  
 [pipenv](https://pipenv.readthedocs.io/en/latest/) for dependency management  
@@ -7,11 +12,12 @@ The application uses
 [pylint](https://www.pylint.org/) for linting  
 [black](https://black.readthedocs.io/en/stable/) for formatting  
 [flask](http://flask.pocoo.org/) for its web ui.  
-[circleci](https://circleci.com/) for ci cd  
+[circleci](https://circleci.com/) for ci cd   
+[heroku](https://heroku.com) for deployment  
 
 There are also git hooks to help developers remember to run the tests pre-commit  
 
-The app also uses docker and docker-compose for containerized deployment  
+Docker and docker-compose are also set up for containerization of the app  
 
 ### To Install Dependencies  
 ##### (You Should Do This Before Anything Else)

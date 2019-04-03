@@ -1,0 +1,94 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/python:3.7
+
+    steps:
+      - checkout
+
+      - run: sudo chown -R circleci:circleci /usr/local/bin
+      - run: sudo chown -R circleci:circleci /usr/local/lib/python3.7/site-packages
+
+      - restore_cache:
+      # Read about caching dependencies: https://circleci.com/docs/2.0/caching/
+          key: deps9-{{ .Branch }}-{{ checksum "Pipfile.lock" }}
+
+      - run:
+          name: install dependencies
+          command: |
+            make install
+
+      - save_cache: # cache Python dependencies using checksum of Pipfile as the cache-key
+          key: deps9-{{ .Branch }}-{{ checksum "Pipfile.lock" }}
+          paths:
+            - ".venv"
+            - "/usr/local/bin"
+            - "/usr/local/lib/python3.7/site-packages"
+
+      - run:
+          name: run tests
+          command: |
+            mkdir test-reports
+            make test-ci
+
+      - store_test_results:
+          path: test-reports
+
+      - store_artifacts:
+          path: test-reports
+          destination: test-reports
+
+  deploy-prod:
+      docker:
+        - image: buildpack-deps:trusty
+      steps:
+        - checkout
+        - run:
+            name: Deploy Master to Heroku
+            command: |
+              git push --force https://heroku:$HEROKU_API_KEY@git.heroku.com/zylo-calculator.git master
+  
+  deploy-release:
+      docker:
+        - image: buildpack-deps:trusty
+      steps:
+        - checkout
+        - run:
+            name: Deploy Release to Heroku
+            command: |
+              git push --force https://heroku:$HEROKU_API_KEY@git.heroku.com/zylo-calculator-release.git master
+  
+  deploy-dev:
+      docker:
+        - image: buildpack-deps:trusty
+      steps:
+        - checkout
+        - run:
+            name: Deploy Dev to Heroku
+            command: |
+              git push --force https://heroku:$HEROKU_API_KEY@git.heroku.com/zylo-calculator-dev.git master
+
+workflows:
+  version: 2
+  build-deploy:
+    jobs:
+      - build
+      - deploy-prod:
+          requires:
+            - build
+          filters:
+            branches:
+              only: master
+      - deploy-release:
+          requires:
+            - build
+          filters:
+            branches:
+              only: /release.*/
+      - deploy-dev:
+          requires:
+            - build
+          filters:
+            branches:
+              only: develop

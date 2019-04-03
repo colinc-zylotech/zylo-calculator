@@ -1,6 +1,7 @@
 .git
 .gitignore
 .pytest_cache
+test-reports
 **/__pycache__
 Dockerfile
 docker-compose.yml
