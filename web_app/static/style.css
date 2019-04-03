@@ -1,0 +1,47 @@
+html, body, .content {
+    height: 100%;
+}
+
+.flash {
+}
+
+.calculator-page-container {
+    height: 100%;
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.calculator {
+    border: 2px solid lightgray;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.calculator input {
+    width: 100%;
+}
+
+.calculator__title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.zylo {
+    color: darkorange;
+}
+
+.calculator__total-display {
+    margin-top: 5px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.calculator__total-display-title {
+}
+
+.calculator__total-display-value {
+    font-weight: bold;
+}
