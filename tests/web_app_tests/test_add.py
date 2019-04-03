@@ -9,7 +9,7 @@ def test_add_with_empty_session():
     with APP.test_client() as client:
         response = client.post("/add", data={"number_to_add": 5}, follow_redirects=True)
 
-        assert b"5" in response.data
+        assert b"Current Total: 5" in response.data
 
 
 def test_add_with_session():
@@ -22,7 +22,7 @@ def test_add_with_session():
             "/add", data={"number_to_add": 51}, follow_redirects=True
         )
 
-        assert b"56" in response.data
+        assert b"Current Total: 56" in response.data
 
 
 def test_add_without_passing_a_number():
@@ -31,4 +31,4 @@ def test_add_without_passing_a_number():
         client.post("/add", data={"number_to_add": 5}, follow_redirects=True)
         response = client.post("/add", data={}, follow_redirects=True)
 
-        assert b"5" in response.data
+        assert b"Current Total: 5" in response.data

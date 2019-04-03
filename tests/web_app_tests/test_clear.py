@@ -7,7 +7,7 @@ def test_clear_with_empty_session():
     with APP.test_client() as client:
         response = client.post("/clear", follow_redirects=True)
 
-        assert b"0" in response.data
+        assert b"Current Total: 0" in response.data
 
 
 def test_clear_with_session():
@@ -16,4 +16,4 @@ def test_clear_with_session():
         response = client.post("/clear", follow_redirects=True)
         client.post("/add", data={"number_to_add": 5}, follow_redirects=True)
 
-        assert b"0" in response.data
+        assert b"Current Total: 0" in response.data
