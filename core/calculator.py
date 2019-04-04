@@ -13,6 +13,11 @@ class Calculator:
         return self._total
 
     def add(self, num):
-        """ returns the sum of x and y """
+        """ returns the sum of the current total and num """
         self._total += num
+        return self.total
+
+    def subtract(self, num):
+        """ returns the difference between the current total and num """
+        self._total -= num
         return self.total

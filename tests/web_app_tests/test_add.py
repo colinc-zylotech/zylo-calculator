@@ -7,28 +7,26 @@ def test_add_with_empty_session():
         being the new total presented in the UI
     """
     with APP.test_client() as client:
-        response = client.post("/add", data={"number_to_add": 5}, follow_redirects=True)
+        response = client.post("/add", data={"input_number": 5}, follow_redirects=True)
 
-        assert b"Current Total: 5" in response.data
+        assert b"5" in response.data
 
 
 def test_add_with_session():
     """ Adding with an non empty session should result in the number added
-        plus the existing total being the new presented in the UI
+        plus the existing total being the new total presented in the UI
     """
     with APP.test_client() as client:
-        client.post("/add", data={"number_to_add": 5}, follow_redirects=True)
-        response = client.post(
-            "/add", data={"number_to_add": 51}, follow_redirects=True
-        )
+        client.post("/add", data={"input_number": 5}, follow_redirects=True)
+        response = client.post("/add", data={"input_number": 51}, follow_redirects=True)
 
-        assert b"Current Total: 56" in response.data
+        assert b"56" in response.data
 
 
 def test_add_without_passing_a_number():
     """ Adding without passing a number should simply add 0 """
     with APP.test_client() as client:
-        client.post("/add", data={"number_to_add": 5}, follow_redirects=True)
+        client.post("/add", data={"input_number": 5}, follow_redirects=True)
         response = client.post("/add", data={}, follow_redirects=True)
 
-        assert b"Current Total: 5" in response.data
+        assert b"5" in response.data
