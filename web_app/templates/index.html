@@ -10,9 +10,10 @@
           <div class="flash">{{ message }}</div>
         {% endfor %}
         <form method="POST">
-            <label for="number-to-add" value="number to add"/>
-            <input class="calculator__number-input" type="number" name="number_to_add" step="0.01" required/>
+            <label for="input-number" value="input number"/>
+            <input id="input-number" class="calculator__number-input" type="number" name="input_number" step="0.01" required/>
             <input type="submit" value="Add (+)" formaction="/add"/>
+            <input type="submit" value="Subtract (-)" formaction="/subtract"/>
         </form>
         <form action="/clear" method="POST">
             <input type="submit" value="Clear">

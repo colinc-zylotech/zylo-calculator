@@ -17,3 +17,10 @@ class TestCalculator:
         expected_sum = 0 + 10
         result = self.calculator.add(num)
         assert result == expected_sum
+
+    def test_subtract(self):
+        """ test the add method of Calculator """
+        num = 10
+        expected_sum = 0 - 10
+        result = self.calculator.subtract(num)
+        assert result == expected_sum
